@@ -4,16 +4,19 @@ const next_step_btn = document.querySelector("#next_step_btn");
 const prev_step_btn = document.querySelector("#prev_step_btn");
 
 const Uname = document.getElementById("Uname");
+const Uemail = document.getElementById("Uemail");
+const Uphoneno = document.getElementById("Uphoneno");
+
 let currentStep = 1;
 
-
+// previous and next button functionality
 
 next_step_btn.addEventListener("click", (e) => {
     e.preventDefault();
     nextPrev(1);
 })
 
-prev_step_btn.addEventListener("click", () => {
+prev_step_btn.addEventListener("click", (e) => {
     e.preventDefault();
     nextPrev(-1);
 })
@@ -55,21 +58,49 @@ function nextPrev(val) {
 
     let current_step = document.querySelector(`[data-step = '${currentStep}']`);
 
-    // if(step === 1 && !validateForm()) return false;
+    console.log(validateForm());
 
+    if(val === 1 && !validateForm()) return false;
+    
     current_step.classList.add("hideElement");
-
-    // go back button not working
 
     currentStep = currentStep + val;
 
     showStep(currentStep);
+
 }
 
 
 // finish this function
 function validateForm() {
 
+    if(Uname.value === "" || Uemail.value === "" || Uphoneno.value === "") {
+        if(Uname.value === "")
+        {
+            document.createElement("span");
+            return false;
+        } else {
+            return true;
+        }
+        if(Uemail.value === "")
+        {
+            document.createElement("span");
+            return false;
+        } else {
+            return true;
+        }
+        if(Uphoneno.value === "")
+        {
+            document.createElement("span");
+            return false;
+        } else {
+            return true;
+        }
+        return false;
+    } else {
+        return true;
+    }
+   
 }
 
 function fixStepIndicator(step) {
